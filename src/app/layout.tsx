@@ -34,8 +34,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <nav>
-          {routes.map((route) => (
-            <Link href={route.uri}>{route.label}</Link>
+          {routes.map((route, routeIndex) => (
+            <Link key={routeIndex} href={route.uri}>
+              {route.label}
+            </Link>
           ))}
         </nav>
         {children}
