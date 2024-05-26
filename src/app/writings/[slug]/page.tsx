@@ -23,9 +23,18 @@ const Writing = ({ params }: { params: { slug: string } }) => {
 
   return (
     <main>
-      <article>
-        <Markdown>{writing.content}</Markdown>
-      </article>
+      <Markdown
+        options={{
+          wrapper: "article",
+          overrides: {
+            h1: { component: "h2" },
+            h2: { component: "h3" },
+            h3: { component: "h4" },
+          },
+        }}
+      >
+        {writing.content}
+      </Markdown>
     </main>
   );
 };
