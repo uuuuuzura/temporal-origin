@@ -1,14 +1,15 @@
 import { readFileSync, readdirSync } from "fs";
 import matter from "gray-matter";
 
-export const getWritingMetadata = (basePath: string) => {
-  const folder = "src/" + basePath + "/";
-  const files = readdirSync(folder);
+const writingsBasePath = "src/writings/";
+
+export const getAllWritingsMetadata = () => {
+  const files = readdirSync(writingsBasePath);
 
   const writings = files.filter((file) => file.endsWith(".md"));
 
   const writingMetadata = writings.map((filename) => {
-    const metadata = readFileSync(folder + filename, "utf-8");
+    const metadata = readFileSync(writingsBasePath + filename, "utf-8");
     const matterResult = matter(metadata);
     return {
       title: matterResult.data.title,
@@ -19,11 +20,10 @@ export const getWritingMetadata = (basePath: string) => {
   return writingMetadata;
 };
 
-export const getWritingContent = (slug: string) => {
-  const folder = "src/writings/";
-  const file = folder + slug + ".md";
+export const getWritingContentBySlug = (slug: string) => {
+  const file = writingsBasePath + slug + ".md";
   const content = readFileSync(file, "utf-8");
 
   const matterResult = matter(content);
-  return matterResult;
+  return matterResult.content;
 };

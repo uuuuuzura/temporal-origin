@@ -1,14 +1,14 @@
-import { getWritingMetadata } from "@/utils/writings";
+import { getAllWritingsMetadata } from "@/utils/writings";
 import Link from "next/link";
 
 const Writings = () => {
-  const writingMetadata = getWritingMetadata("writings");
+  const writingsMetadata = getAllWritingsMetadata();
 
   return (
     <main>
       <h2>Writings</h2>
       <ul>
-        {writingMetadata.map((writing, writingIndex) => (
+        {writingsMetadata.map((writing, writingIndex) => (
           <li key={writingIndex}>
             <Link href={`/writings/${writing.slug}`}>{writing.title}</Link>
           </li>

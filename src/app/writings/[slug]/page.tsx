@@ -1,8 +1,11 @@
-import { getWritingContent, getWritingMetadata } from "@/utils/writings";
+import {
+  getWritingContentBySlug,
+  getAllWritingsMetadata,
+} from "@/utils/writings";
 import Markdown from "markdown-to-jsx";
 
 export const generateStaticParams = async () => {
-  const writings = getWritingMetadata("writings");
+  const writings = getAllWritingsMetadata();
   return writings.map((writing) => ({ slug: writing.slug }));
 };
 
@@ -19,7 +22,7 @@ export const generateMetadata = async ({
 
 const Writing = ({ params }: { params: { slug: string } }) => {
   const slug = params.slug;
-  const writing = getWritingContent(slug);
+  const writingContent = getWritingContentBySlug(slug);
 
   return (
     <main>
@@ -33,7 +36,7 @@ const Writing = ({ params }: { params: { slug: string } }) => {
           },
         }}
       >
-        {writing.content}
+        {writingContent}
       </Markdown>
     </main>
   );
