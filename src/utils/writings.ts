@@ -1,3 +1,4 @@
+import { WritingMetadata } from "@/interfaces/writing";
 import { readFileSync, readdirSync } from "fs";
 import matter from "gray-matter";
 
@@ -26,4 +27,15 @@ export const getWritingContentBySlug = (slug: string) => {
 
   const matterResult = matter(content);
   return matterResult.content;
+};
+
+export const getWritingMetadataBySlug = (slug: string): WritingMetadata => {
+  const file = writingsBasePath + slug + ".md";
+  const content = readFileSync(file, "utf-8");
+
+  const matterResult = matter(content);
+  return {
+    title: matterResult.data.title,
+    slug,
+  };
 };

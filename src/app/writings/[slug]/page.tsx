@@ -1,6 +1,8 @@
+import { getMetadataTitle } from "@/utils/core";
 import {
   getWritingContentBySlug,
   getAllWritingsMetadata,
+  getWritingMetadataBySlug,
 } from "@/utils/writings";
 import Markdown from "markdown-to-jsx";
 
@@ -14,9 +16,9 @@ export const generateMetadata = async ({
 }: {
   params: { slug: string };
 }) => {
-  const id = params?.slug ? " . " + params.slug : "";
+  const writingMetadata = getWritingMetadataBySlug(params.slug);
   return {
-    title: "Temporal Origin - " + id,
+    title: getMetadataTitle(writingMetadata.title),
   };
 };
 

@@ -1,3 +1,10 @@
+import { getMetadataTitle } from "@/utils/core";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: getMetadataTitle("About"),
+};
+
 const About = () => {
   return (
     <main>
