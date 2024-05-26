@@ -19,6 +19,10 @@ const routes: Route[] = [
     label: "About",
     uri: "/about",
   },
+  {
+    label: "Writings",
+    uri: "/writings",
+  },
 ];
 
 export default function RootLayout({
